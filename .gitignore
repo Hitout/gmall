@@ -105,5 +105,3 @@ target/
 *.iws
 
 # system ignore
-/renren-fast/
-/renren-generator/
