@@ -22,6 +22,11 @@ public class SmsCouponController {
     @Resource
     private SmsCouponService smsCouponService;
 
+    @RequestMapping("hello")
+    public String hello() {
+        return "This is Coupon";
+    }
+
     /**
      * 列表
      */

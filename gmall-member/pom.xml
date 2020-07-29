@@ -12,21 +12,22 @@
     <name>member</name>
     <description>Member of Gmall</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <gmall.common.version>0.0.1-SNAPSHOT</gmall.common.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.gxyan.gmall</groupId>
             <artifactId>common</artifactId>
-            <version>${gmall.common.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>

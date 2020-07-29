@@ -1,0 +1,21 @@
+server:
+  port: 88
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product_route
+          uri: lb://gmall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: admin_route
+          uri: lb://gmall-admin
+          # 请求断言
+          predicates:
+            - Path=/api/**
+          filters:
+            # RewritePath路径重写
+            - RewritePath=/api/(?<segment>.*),/gmall-admin/$\{segment}

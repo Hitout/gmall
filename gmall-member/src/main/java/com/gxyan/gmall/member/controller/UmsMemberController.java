@@ -3,6 +3,7 @@ package com.gxyan.gmall.member.controller;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
 import com.gxyan.gmall.member.entity.UmsMemberEntity;
+import com.gxyan.gmall.member.feign.CouponFeignService;
 import com.gxyan.gmall.member.service.UmsMemberService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,14 @@ import java.util.Map;
 public class UmsMemberController {
     @Resource
     private UmsMemberService umsMemberService;
+
+    @Resource
+    private CouponFeignService couponFeignService;
+
+    @RequestMapping("/couponHello")
+    public String couponHello(){
+        return couponFeignService.hello();
+    }
 
     /**
      * 列表

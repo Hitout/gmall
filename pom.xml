@@ -22,6 +22,8 @@
         <module>gmall-coupon</module>
         <module>gmall-ware</module>
         <module>gmall-common</module>
+        <module>gmall-gateway</module>
+        <module>gmall-admin</module>
     </modules>
 
     <properties>
@@ -29,10 +31,17 @@
         <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
         <mybatis-plus.version>3.3.1</mybatis-plus.version>
         <commons.lang.version>2.6</commons.lang.version>
+        <gmall.common.version>0.0.1-SNAPSHOT</gmall.common.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.gxyan.gmall</groupId>
+                <artifactId>common</artifactId>
+                <version>${gmall.common.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
