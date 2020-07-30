@@ -104,4 +104,7 @@ target/
 *.iml
 *.iws
 
+#vue
+/node_modules/
+
 # system ignore
