@@ -7,12 +7,12 @@
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
         <el-button
-          v-if="isAuth('product:pmsbrand:save')"
+          v-if="isAuth('product:brand:save')"
           type="primary"
           @click="addOrUpdateHandle()"
         >新增</el-button>
         <el-button
-          v-if="isAuth('product:pmsbrand:delete')"
+          v-if="isAuth('product:brand:delete')"
           type="danger"
           @click="deleteHandle()"
           :disabled="dataListSelections.length <= 0"
@@ -29,7 +29,15 @@
       <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
       <el-table-column prop="brandId" header-align="center" align="center" label="品牌id"></el-table-column>
       <el-table-column prop="name" header-align="center" align="center" label="品牌名"></el-table-column>
-      <el-table-column prop="logo" header-align="center" align="center" label="品牌logo地址"></el-table-column>
+      <el-table-column prop="logo" header-align="center" align="center" label="品牌logo">
+        <template slot-scope="scope">
+          <!-- <el-image
+              style="width: 100px; height: 80px"
+              :src="scope.row.logo"
+          fit="fill"></el-image>-->
+          <img :src="scope.row.logo" style="width: 100px; height: 80px" />
+        </template>
+      </el-table-column>
       <el-table-column prop="descript" header-align="center" align="center" label="介绍"></el-table-column>
       <el-table-column prop="showStatus" header-align="center" align="center" label="显示状态">
         <template slot-scope="scope">

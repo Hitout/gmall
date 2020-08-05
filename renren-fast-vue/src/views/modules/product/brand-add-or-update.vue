@@ -7,14 +7,22 @@
     <el-form-item label="品牌名" prop="name">
       <el-input v-model="dataForm.name" placeholder="品牌名"></el-input>
     </el-form-item>
-    <el-form-item label="品牌logo地址" prop="logo">
-      <el-input v-model="dataForm.logo" placeholder="品牌logo地址"></el-input>
+    <el-form-item label="品牌logo" prop="logo">
+      <single-upload v-model="dataForm.logo"></single-upload>
     </el-form-item>
     <el-form-item label="介绍" prop="descript">
       <el-input v-model="dataForm.descript" placeholder="介绍"></el-input>
     </el-form-item>
     <el-form-item label="显示状态" prop="showStatus">
-      <el-input v-model="dataForm.showStatus" placeholder="显示状态"></el-input>
+      <template slot-scope="scope">
+        <el-switch
+          v-model="dataForm.showStatus"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          :active-value="1"
+          :inactive-value="0"
+        ></el-switch>
+      </template>
     </el-form-item>
     <el-form-item label="检索首字母" prop="firstLetter">
       <el-input v-model="dataForm.firstLetter" placeholder="检索首字母"></el-input>
@@ -31,7 +39,11 @@
 </template>
 
 <script>
+  import singleUpload from "@/components/upload/singleUpload";
   export default {
+    components: {
+      singleUpload
+    },
     data () {
       return {
         visible: false,
@@ -49,7 +61,7 @@
             { required: true, message: '品牌名不能为空', trigger: 'blur' }
           ],
           logo: [
-            { required: true, message: '品牌logo地址不能为空', trigger: 'blur' }
+            { required: true, message: '品牌logo不能为空', trigger: 'blur' }
           ],
           descript: [
             { required: true, message: '介绍不能为空', trigger: 'blur' }

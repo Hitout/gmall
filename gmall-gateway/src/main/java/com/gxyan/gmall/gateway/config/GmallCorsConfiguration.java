@@ -7,6 +7,7 @@ import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 /**
+ * 统一跨域配置
  * @author gxyan
  * @date 2020/6/13 21:20
  */

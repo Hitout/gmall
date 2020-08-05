@@ -11,6 +11,13 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
 
+        - id: tool_route
+          uri: lb://gmall-tool
+          predicates:
+            - Path=/api/tool/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
         - id: admin_route
           uri: lb://gmall-admin
           # 请求断言
