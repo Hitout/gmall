@@ -1,19 +1,15 @@
 package com.gxyan.gmall.product.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.gxyan.gmall.product.entity.AttrGroupEntity;
-import com.gxyan.gmall.product.service.AttrGroupService;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
+import com.gxyan.gmall.product.entity.AttrGroupEntity;
+import com.gxyan.gmall.product.service.AttrGroupService;
+import com.gxyan.gmall.product.service.CategoryService;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -29,24 +25,32 @@ import javax.annotation.Resource;
 public class AttrGroupController {
     @Resource
     private AttrGroupService attrGroupService;
+    @Resource
+    private CategoryService categoryService;
 
     /**
-     * 列表
+     * 获取分类属性分组列表
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = attrGroupService.queryPage(params);
+    @RequestMapping("/list/{catelogId}")
+    public R list(@RequestParam Map<String, Object> params,
+                  @PathVariable("catelogId") Long catelogId){
+        PageUtils page = attrGroupService.queryPage(params,catelogId);
 
         return R.ok().put("page", page);
     }
 
 
     /**
-     * 信息
+     * 获取属性分组详情
      */
     @RequestMapping("/info/{attrGroupId}")
     public R info(@PathVariable("attrGroupId") Long attrGroupId){
-		AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
+        AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
+
+        Long catelogId = attrGroup.getCatelogId();
+        Long[] path = categoryService.findCatelogPath(catelogId);
+
+        attrGroup.setCatelogPath(path);
 
         return R.ok().put("attrGroup", attrGroup);
     }

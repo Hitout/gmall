@@ -6,6 +6,8 @@ import com.gxyan.gmall.product.entity.CategoryEntity;
 import com.gxyan.gmall.product.service.CategoryService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +31,22 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                     return categoryEntity;
                 }).sorted(Comparator.comparingInt(menu -> menu.getSort() == null ? 0 : menu.getSort()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Long[] findCatelogPath(Long catelogId) {
+        List<Long> parentPath = findParentPath(catelogId, new ArrayList<>());
+        Collections.reverse(parentPath);
+        return parentPath.toArray(new Long[0]);
+    }
+
+    private List<Long> findParentPath(Long catelogId, List<Long> paths) {
+        paths.add(catelogId);
+        CategoryEntity category = this.getById(catelogId);
+        if (category.getParentCid()!=0) {
+            findParentPath(category.getParentCid(), paths);
+        }
+        return paths;
     }
 
     /**

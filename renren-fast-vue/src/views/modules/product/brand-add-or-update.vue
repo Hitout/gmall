@@ -14,7 +14,7 @@
       <el-input v-model="dataForm.descript" placeholder="介绍"></el-input>
     </el-form-item>
     <el-form-item label="显示状态" prop="showStatus">
-      <template slot-scope="scope">
+      <template>
         <el-switch
           v-model="dataForm.showStatus"
           active-color="#13ce66"

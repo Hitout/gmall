@@ -18,5 +18,12 @@ public interface CategoryService extends IService<CategoryEntity> {
      * @return 商品三级分类
      */
     List<CategoryEntity> queryCategoryTree();
+
+    /**
+     * 根据子节点获取分类完整路径
+     * @param catelogId
+     * @return
+     */
+    Long[] findCatelogPath(Long catelogId);
 }
 
