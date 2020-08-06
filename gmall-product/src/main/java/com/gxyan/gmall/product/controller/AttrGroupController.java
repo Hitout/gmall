@@ -9,6 +9,7 @@ import com.gxyan.gmall.product.service.AttrGroupService;
 import com.gxyan.gmall.product.service.AttrService;
 import com.gxyan.gmall.product.service.CategoryService;
 import com.gxyan.gmall.product.vo.AttrGroupRelationVo;
+import com.gxyan.gmall.product.vo.AttrGroupWithAttrsVo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -131,4 +132,12 @@ public class AttrGroupController {
         return R.ok();
     }
 
+    /**
+     * 获取分类下所有分组及关联属性
+     */
+    @GetMapping("/{catelogId}/withattr")
+    public R getAttrGroupWithAttrs(@PathVariable("catelogId")Long catelogId){
+        List<AttrGroupWithAttrsVo> vos =  attrGroupService.getAttrGroupWithAttrsByCatelogId(catelogId);
+        return R.ok().put("data",vos);
+    }
 }
