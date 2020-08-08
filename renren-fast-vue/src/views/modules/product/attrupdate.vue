@@ -79,7 +79,7 @@ export default {
     },
     getSpuBaseAttrs() {
       this.$http({
-        url: this.$http.adornUrl(`/product/attr/base/listforspu/${this.spuId}`),
+        url: this.$http.adornUrl(`/product/productattrvalue/base/listforspu/${this.spuId}`),
         method: "get"
       }).then(({ data }) => {
         data.data.forEach(item => {
@@ -158,7 +158,7 @@ export default {
       })
         .then(() => {
           this.$http({
-            url: this.$http.adornUrl(`/product/attr/update/${this.spuId}`),
+            url: this.$http.adornUrl(`/product/productattrvalue/update/${this.spuId}`),
             method: "post",
             data: this.$http.adornData(submitData, false)
           }).then(({ data }) => {

@@ -1,19 +1,15 @@
 package com.gxyan.gmall.product.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.gxyan.gmall.product.entity.ProductAttrValueEntity;
-import com.gxyan.gmall.product.service.ProductAttrValueService;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
+import com.gxyan.gmall.product.entity.ProductAttrValueEntity;
+import com.gxyan.gmall.product.service.ProductAttrValueService;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -28,6 +24,29 @@ import javax.annotation.Resource;
 public class ProductAttrValueController {
     @Resource
     private ProductAttrValueService productAttrValueService;
+
+    /**
+     * 获取spu规格
+     */
+    @GetMapping("/base/listforspu/{spuId}")
+    public R baseListForSpu(@PathVariable("spuId") Long spuId){
+
+        List<ProductAttrValueEntity> entities = productAttrValueService.baseListForSpu(spuId);
+
+        return R.ok().put("data",entities);
+    }
+
+    /**
+     * 修改商品规格
+     */
+    @PostMapping("/update/{spuId}")
+    public R updateSpuAttr(@PathVariable("spuId") Long spuId,
+                           @RequestBody List<ProductAttrValueEntity> entities){
+
+        productAttrValueService.updateSpuAttr(spuId,entities);
+
+        return R.ok();
+    }
 
     /**
      * 列表
