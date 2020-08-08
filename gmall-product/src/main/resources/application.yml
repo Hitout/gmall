@@ -7,6 +7,8 @@ spring:
     url: jdbc:mysql://localhost:3306/gmall_pms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: gxyan
     password:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   global-config:
