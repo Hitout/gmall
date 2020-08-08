@@ -1,19 +1,15 @@
 package com.gxyan.gmall.coupon.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.gxyan.gmall.coupon.entity.SkuFullReductionEntity;
-import com.gxyan.gmall.coupon.service.SkuFullReductionService;
+import com.gxyan.gmall.common.to.SkuReductionTo;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
+import com.gxyan.gmall.coupon.entity.SkuFullReductionEntity;
+import com.gxyan.gmall.coupon.service.SkuFullReductionService;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -58,6 +54,15 @@ public class SkuFullReductionController {
     public R save(@RequestBody SkuFullReductionEntity skuFullReduction){
 		skuFullReductionService.save(skuFullReduction);
 
+        return R.ok();
+    }
+
+    /**
+     * 保存sku的优惠、满减等信息
+     */
+    @PostMapping("/saveinfo")
+    public R saveInfo(@RequestBody SkuReductionTo reductionTo){
+        skuFullReductionService.saveSkuReduction(reductionTo);
         return R.ok();
     }
 
