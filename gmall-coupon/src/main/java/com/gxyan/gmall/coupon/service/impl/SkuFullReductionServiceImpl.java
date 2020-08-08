@@ -15,6 +15,7 @@ import com.gxyan.gmall.coupon.service.SkuFullReductionService;
 import com.gxyan.gmall.coupon.service.SkuLadderService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -41,6 +42,7 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveSkuReduction(SkuReductionTo reductionTo) {
         //1、sms_sku_ladder
         SkuLadderEntity skuLadderEntity = new SkuLadderEntity();

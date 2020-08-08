@@ -21,7 +21,6 @@ import javax.annotation.Resource;
  * 商品阶梯价格
  *
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 21:22:55
  */
 @RestController

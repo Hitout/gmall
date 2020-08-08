@@ -11,7 +11,6 @@ import lombok.Data;
  * 仓库信息
  * 
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 20:25:34
  */
 @Data

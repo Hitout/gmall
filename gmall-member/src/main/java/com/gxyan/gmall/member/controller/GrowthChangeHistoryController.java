@@ -16,7 +16,6 @@ import java.util.Map;
  * 成长值变化历史记录
  *
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 20:42:40
  */
 @RestController

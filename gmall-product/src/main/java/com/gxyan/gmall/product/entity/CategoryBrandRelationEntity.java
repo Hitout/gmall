@@ -10,7 +10,6 @@ import java.io.Serializable;
  * 品牌分类关联
  * 
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 21:31:59
  */
 @Data

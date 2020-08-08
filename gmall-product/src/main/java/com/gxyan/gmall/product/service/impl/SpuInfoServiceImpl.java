@@ -71,7 +71,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         BeanUtils.copyProperties(spuSaveVo, spuInfoEntity);
         spuInfoEntity.setCreateTime(new Date());
         spuInfoEntity.setUpdateTime(new Date());
-        this.save(spuInfoEntity);
+        this.baseMapper.insert(spuInfoEntity);
 
         // 2.保存Spu的描述图片 pms_spu_info_desc
         SpuInfoDescEntity spuInfoDescEntity = new SpuInfoDescEntity();

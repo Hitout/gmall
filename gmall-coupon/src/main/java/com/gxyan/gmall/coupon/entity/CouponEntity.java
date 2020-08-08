@@ -12,7 +12,6 @@ import lombok.Data;
  * 优惠券信息
  * 
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 21:22:55
  */
 @Data

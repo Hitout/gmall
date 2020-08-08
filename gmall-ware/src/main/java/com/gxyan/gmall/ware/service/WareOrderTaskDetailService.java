@@ -10,7 +10,6 @@ import java.util.Map;
  * 库存工作单
  *
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 20:25:35
  */
 public interface WareOrderTaskDetailService extends IService<WareOrderTaskDetailEntity> {

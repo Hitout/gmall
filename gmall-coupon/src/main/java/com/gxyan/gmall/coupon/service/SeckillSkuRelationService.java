@@ -10,7 +10,6 @@ import java.util.Map;
  * 秒杀活动商品关联
  *
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 21:22:55
  */
 public interface SeckillSkuRelationService extends IService<SeckillSkuRelationEntity> {

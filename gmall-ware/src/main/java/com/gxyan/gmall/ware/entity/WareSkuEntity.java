@@ -11,7 +11,6 @@ import lombok.Data;
  * 商品库存
  * 
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 20:25:35
  */
 @Data

@@ -10,7 +10,6 @@ import java.util.Map;
  * 秒杀活动场次
  *
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 21:22:55
  */
 public interface SeckillSessionService extends IService<SeckillSessionEntity> {

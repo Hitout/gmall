@@ -10,7 +10,6 @@ import java.util.Map;
  * 优惠券领取历史记录
  *
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 21:22:55
  */
 public interface CouponHistoryService extends IService<CouponHistoryEntity> {

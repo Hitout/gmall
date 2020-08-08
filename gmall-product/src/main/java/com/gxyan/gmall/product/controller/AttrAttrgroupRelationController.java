@@ -21,7 +21,6 @@ import javax.annotation.Resource;
  * 属性&属性分组关联
  *
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 21:31:59
  */
 @RestController

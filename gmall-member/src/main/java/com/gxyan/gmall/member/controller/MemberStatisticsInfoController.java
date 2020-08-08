@@ -21,7 +21,6 @@ import javax.annotation.Resource;
  * 会员统计信息
  *
  * @author gxyan
- * @email gxyan@qq.com
  * @date 2020-07-30 20:42:40
  */
 @RestController
