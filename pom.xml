@@ -25,6 +25,7 @@
         <module>gmall-gateway</module>
         <module>gmall-admin</module>
         <module>gmall-tool</module>
+        <module>gmall-search</module>
     </modules>
 
     <properties>
