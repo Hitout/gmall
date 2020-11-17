@@ -2,8 +2,10 @@ package com.gxyan.gmall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.gxyan.gmall.product.entity.CategoryEntity;
+import com.gxyan.gmall.product.vo.Catalog2VO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品三级分类
@@ -25,5 +27,17 @@ public interface CategoryService extends IService<CategoryEntity> {
      * @return
      */
     Long[] findCatelogPath(Long catelogId);
+
+    /**
+     * 获取分类Json
+     * @return
+     */
+    Map<String, List<Catalog2VO>> getCatalogJson();
+
+    /**
+     * 查出所有的一级分类
+     * @return
+     */
+    List<CategoryEntity> getLevel1Categories();
 }
 
