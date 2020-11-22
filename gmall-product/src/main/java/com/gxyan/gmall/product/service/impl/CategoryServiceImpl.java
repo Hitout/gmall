@@ -6,6 +6,7 @@ import com.gxyan.gmall.product.dao.CategoryDao;
 import com.gxyan.gmall.product.entity.CategoryEntity;
 import com.gxyan.gmall.product.service.CategoryService;
 import com.gxyan.gmall.product.vo.Catalog2VO;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -40,11 +41,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     @Override
+    @Cacheable(value = {"category"},key = "#root.method.name",sync = true)
     public List<CategoryEntity> getLevel1Categories() {
         return baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid", 0));
     }
 
     @Override
+    @Cacheable(value = "category",key = "#root.methodName")
     public Map<String, List<Catalog2VO>> getCatalogJson() {
         // 查出所有的分类数据，再做封装
         List<CategoryEntity> selectList = baseMapper.selectList(null);

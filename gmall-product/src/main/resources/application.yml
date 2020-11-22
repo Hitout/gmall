@@ -9,6 +9,15 @@ spring:
     password:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  cache:
+    redis:
+      use-key-prefix: true
+      time-to-live: 3600000
+      # 缓存空值，防止缓存穿透
+      cache-null-values: true
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   global-config:
