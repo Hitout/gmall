@@ -1,19 +1,16 @@
 package com.gxyan.gmall.ware.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.gxyan.gmall.ware.entity.WareSkuEntity;
-import com.gxyan.gmall.ware.service.WareSkuService;
+import com.gxyan.gmall.common.to.SkuHasStockVo;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
+import com.gxyan.gmall.ware.entity.WareSkuEntity;
+import com.gxyan.gmall.ware.service.WareSkuService;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -80,4 +77,14 @@ public class WareSkuController {
         return R.ok();
     }
 
+    /**
+     * 查询sku是否有库存
+     */
+    @PostMapping("/hasstock")
+    public R getSkuHasStock(@RequestBody List<Long> skuIds){
+        //sku_id , stock
+        List<SkuHasStockVo> vos = wareSkuService.getSkuHasStock(skuIds);
+
+        return R.ok().setData(vos);
+    }
 }

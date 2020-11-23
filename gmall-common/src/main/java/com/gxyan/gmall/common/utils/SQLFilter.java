@@ -8,7 +8,6 @@
 
 package com.gxyan.gmall.common.utils;
 
-import com.gxyan.gmall.common.exception.RRException;
 import org.apache.commons.lang.StringUtils;
 
 /**

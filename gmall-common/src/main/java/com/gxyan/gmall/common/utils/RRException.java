@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package com.gxyan.gmall.common.exception;
+package com.gxyan.gmall.common.utils;
 
 /**
  * 自定义异常

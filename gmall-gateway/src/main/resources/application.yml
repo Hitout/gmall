@@ -47,3 +47,13 @@ spring:
           filters:
             # RewritePath路径重写
             - RewritePath=/api/(?<segment>.*),/gmall-admin/$\{segment}
+
+        - id: product_host_route
+          uri: lb://gmall-product
+          predicates:
+            - Host=gxmall.com,item.gxmall.com
+
+        - id: search_host_route
+          uri: lb://gmall-search
+          predicates:
+            - Host=search.gxmall.com

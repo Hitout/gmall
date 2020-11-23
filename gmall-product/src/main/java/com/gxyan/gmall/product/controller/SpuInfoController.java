@@ -84,5 +84,4 @@ public class SpuInfoController {
 
         return R.ok();
     }
-
 }
