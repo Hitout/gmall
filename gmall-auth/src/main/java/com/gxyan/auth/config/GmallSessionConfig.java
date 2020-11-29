@@ -1,0 +1,29 @@
+package com.gxyan.auth.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.session.web.http.CookieSerializer;
+import org.springframework.session.web.http.DefaultCookieSerializer;
+
+/**
+ * SpringSession配置类
+ * @author gxyan
+ * @date 2020/11/29 23:30
+ */
+@Configuration
+public class GmallSessionConfig {
+    @Bean
+    public CookieSerializer cookieSerializer(){
+        DefaultCookieSerializer cookieSerializer = new DefaultCookieSerializer();
+        cookieSerializer.setDomainName("gxmall.com");
+        cookieSerializer.setCookieName("GX_SESSION");
+        return cookieSerializer;
+    }
+
+    @Bean
+    public RedisSerializer<Object> springSessionDefaultRedisSerializer() {
+        return new GenericJackson2JsonRedisSerializer();
+    }
+}
