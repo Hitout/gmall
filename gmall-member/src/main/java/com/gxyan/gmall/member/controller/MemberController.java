@@ -1,19 +1,18 @@
 package com.gxyan.gmall.member.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.gxyan.gmall.member.entity.MemberEntity;
-import com.gxyan.gmall.member.service.MemberService;
+import com.gxyan.gmall.common.exception.BizCodeEnum;
+import com.gxyan.gmall.common.exception.ServiceException;
+import com.gxyan.gmall.common.to.UserLoginVo;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
+import com.gxyan.gmall.member.entity.MemberEntity;
+import com.gxyan.gmall.member.service.MemberService;
+import com.gxyan.gmall.member.vo.MemberUserRegisterVo;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -80,4 +79,29 @@ public class MemberController {
         return R.ok();
     }
 
+    /**
+     * 登录
+     */
+    @RequestMapping("/login")
+    public R login(@RequestBody UserLoginVo loginVo) {
+        MemberEntity entity=memberService.login(loginVo);
+        if (entity!=null){
+            return R.ok().put("memberEntity",entity);
+        }else {
+            return R.error(BizCodeEnum.LOGINACCT_PASSWORD_EXCEPTION.getCode(), BizCodeEnum.LOGINACCT_PASSWORD_EXCEPTION.getMessage());
+        }
+    }
+
+    /**
+     * 注册
+     */
+    @PostMapping(value = "/register")
+    public R register(@RequestBody MemberUserRegisterVo vo) {
+        try {
+            memberService.register(vo);
+        } catch (ServiceException e) {
+            return R.error(e.getCode(),e.getMsg());
+        }
+        return R.ok();
+    }
 }
