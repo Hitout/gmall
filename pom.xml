@@ -27,6 +27,7 @@
         <module>gmall-tool</module>
         <module>gmall-search</module>
         <module>gmall-auth</module>
+        <module>gmall-cart</module>
     </modules>
 
     <properties>
