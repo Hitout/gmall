@@ -16,8 +16,10 @@ import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.time.Duration;
 
@@ -56,7 +58,7 @@ public class RedisConfig extends CachingConfigurerSupport {
                 //设置过期时间
                 .entryTtl(Duration.ofMinutes(60))
                 // 使用jackson进行序列化和反序列化
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(getJackson2Serializer()));
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(getSerializer()));
         return RedisCacheManager.builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))
                 .cacheDefaults(redisCacheConfiguration).build();
     }
@@ -72,7 +74,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         StringRedisTemplate template = new StringRedisTemplate(factory);
 
         // 使用jackson进行序列化和反序列化
-        template.setValueSerializer(getJackson2Serializer());
+        template.setValueSerializer(getSerializer());
 
         template.afterPropertiesSet();
         return template;
@@ -85,5 +87,9 @@ public class RedisConfig extends CachingConfigurerSupport {
         objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         serializer.setObjectMapper(objectMapper);
         return serializer;
+    }
+
+    private RedisSerializer<Object> getSerializer() {
+        return new GenericJackson2JsonRedisSerializer();
     }
 }
