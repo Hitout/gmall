@@ -1,2 +1,9 @@
 server:
   port: 7080
+
+# \u81EA\u5B9A\u4E49\u7EBF\u7A0B\u6C60\u53C2\u6570
+gmall:
+  thread:
+    corePoolSize: 10
+    maxPoolSize: 20
+    keepAliveTime: 300

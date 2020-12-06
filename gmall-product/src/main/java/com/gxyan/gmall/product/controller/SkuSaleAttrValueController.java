@@ -1,19 +1,15 @@
 package com.gxyan.gmall.product.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.gxyan.gmall.product.entity.SkuSaleAttrValueEntity;
-import com.gxyan.gmall.product.service.SkuSaleAttrValueService;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
+import com.gxyan.gmall.product.entity.SkuSaleAttrValueEntity;
+import com.gxyan.gmall.product.service.SkuSaleAttrValueService;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -80,4 +76,8 @@ public class SkuSaleAttrValueController {
         return R.ok();
     }
 
+    @RequestMapping("/getSkuSaleAttrValuesAsString")
+    public List<String> getSkuSaleAttrValuesAsString(@RequestBody Long skuId) {
+        return skuSaleAttrValueService.getSkuSaleAttrValuesAsString(skuId);
+    }
 }

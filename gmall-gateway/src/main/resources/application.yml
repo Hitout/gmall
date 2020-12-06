@@ -62,3 +62,8 @@ spring:
           uri: lb://gmall-auth
           predicates:
             - Host=auth.gxmall.com
+
+        - id: cart_host_route
+          uri: lb://gmall-cart
+          predicates:
+            - Host=cart.gxmall.com

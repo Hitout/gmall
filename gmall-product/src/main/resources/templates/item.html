@@ -643,7 +643,18 @@
 
                         </div>
                     </div>
-                    <!--TODO @see https://github.com/NiceSeason/gulimall-learning/blob/master/gulimall-product/src/main/resources/templates/item.html-->
+                    <div class="box-btns-two">
+                        <a class="addToCart" href="http://cart.gxmall.com/addToCart" th:attr="skuId=${item.info.skuId}">
+                            加入购物车
+                        </a>
+                    </div>
+
+                    <div class="box-btns-two">
+                        <a class="seckill" href="#"
+                           th:attr="skuId=${item.info.skuId}">
+                            立即抢购
+                        </a>
+                    </div>
                     <div class="box-btns-three">
                         <img src="/static/item/img/e4ed3606843f664591ff1f68f7fda12d.png" alt=""/> 分享
                     </div>
@@ -1275,24 +1286,24 @@
         $("a[class='sku_attr_value checked']").parent().css({"border": "solid 1px red"});
     });
 
-    $("#addToCartA").click(function () {
-        var num = $('#numInput').val();
-        var skuId = $(this).attr("skuId");
-        location.href = "http://cart.gxmall.com/addToCart?skuId=" + skuId +"&num=" + num;
+    $(".addToCart").click(function () {
+        let skuId = $(this).attr("skuId");
+        let num = $("#productNum").val();
+        location.href = "http://cart.gxmall.com/addCartItem?skuId=" + skuId + "&num=" + num;
         return false;
     });
 
-    $("#secKillA").click(function () {
-        var isLogin = [[${session.loginUser==null}]]; //true
-        if(!isLogin){
-            var killId = $(this).attr("sessionId") + "_" + $(this).attr("skuId");
-            var key = $(this).attr("code");
-            var num = $("#numInput").val();
-            location.href = "http://seckill.gxmall.com/kill?killId="+killId+"&key="+ key +"&num=" + num;
-            return false;
+    $(".seckill").click(function () {
+        var isLogin = [[${session.loginUser != null}]];     //true
+        if (isLogin) {
+            var killId = $(this).attr("sessionid") + "-" + $(this).attr("skuid");
+            var code = $(this).attr("code");
+            var num = $("#productNum").val();
+            location.href = "http://seckill.gxmall.com/kill?killId=" + killId + "&key=" + code + "&num=" + num;
         } else {
-            alert("秒杀请先登录")
+            alert("秒杀请先登录");
         }
+        return false;
     });
 </script>
 
