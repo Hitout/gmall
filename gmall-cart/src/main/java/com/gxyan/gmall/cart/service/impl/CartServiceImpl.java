@@ -9,6 +9,7 @@ import com.gxyan.gmall.cart.vo.Cart;
 import com.gxyan.gmall.cart.vo.CartItem;
 import com.gxyan.gmall.cart.vo.SkuInfoVo;
 import com.gxyan.gmall.cart.vo.UserInfoTo;
+import com.gxyan.gmall.common.constant.CartConstant;
 import com.gxyan.gmall.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundHashOperations;
@@ -35,8 +36,6 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private ThreadPoolExecutor executor;
 
-    private final String CART_PREFIX = "gmall:cart:";
-
     @Override
     public CartItem getCartItem(Long skuId) {
         BoundHashOperations<String, Object, Object> cartOps = getCartOps();
@@ -59,7 +58,7 @@ public class CartServiceImpl implements CartService {
             List<CartItem> userCart = getCartByKey(userInfoTo.getUserId().toString());
             //2.2 查询user-key对应的临时购物车，并和用户购物车合并
             if (tempCart!=null&&tempCart.size()>0){
-                BoundHashOperations<String, Object, Object> ops = redisTemplate.boundHashOps(CART_PREFIX + userInfoTo.getUserId());
+                BoundHashOperations<String, Object, Object> ops = redisTemplate.boundHashOps(CartConstant.CART_PREFIX + userInfoTo.getUserId());
                 for (CartItem cartItem : tempCart) {
                     userCart.add(cartItem);
                     //2.3 在redis中更新数据
@@ -68,7 +67,7 @@ public class CartServiceImpl implements CartService {
             }
             cart.setItems(userCart);
             //2.4 删除临时购物车数据
-            redisTemplate.delete(CART_PREFIX + userInfoTo.getUserKey());
+            redisTemplate.delete(CartConstant.CART_PREFIX + userInfoTo.getUserKey());
         }
         return cart;
     }
@@ -144,7 +143,7 @@ public class CartServiceImpl implements CartService {
     }
 
     private List<CartItem> getCartByKey(String cartKey){
-        BoundHashOperations<String, Object, Object> operations = redisTemplate.boundHashOps(CART_PREFIX + cartKey);
+        BoundHashOperations<String, Object, Object> operations = redisTemplate.boundHashOps(CartConstant.CART_PREFIX + cartKey);
         List<Object> values = operations.values();
         if(values != null && values.size() > 0){
             return values.stream().map((obj) -> {
@@ -160,10 +159,10 @@ public class CartServiceImpl implements CartService {
         UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
         //1.1 登录使用userId操作redis
         if (userInfoTo.getUserId() != null) {
-            return redisTemplate.boundHashOps(CART_PREFIX + userInfoTo.getUserId());
+            return redisTemplate.boundHashOps(CartConstant.CART_PREFIX + userInfoTo.getUserId());
         } else {
             //1.2 未登录使用user-key操作redis
-            return redisTemplate.boundHashOps(CART_PREFIX + userInfoTo.getUserKey());
+            return redisTemplate.boundHashOps(CartConstant.CART_PREFIX + userInfoTo.getUserKey());
         }
     }
 }

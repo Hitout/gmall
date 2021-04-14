@@ -251,7 +251,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             return esModel;
         }).collect(Collectors.toList());
 
-        //TODO 5、将数据发给es进行保存：gulimall-search
+        //TODO 5、将数据发给es进行保存：gxmall-search
         R r = searchFeignService.productStatusUp(collect);
 
         if (r.getCode() == 0) {
@@ -262,5 +262,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             //远程调用失败
             //TODO 7、重复调用？接口幂等性:重试机制
         }
+    }
+
+    @Override
+    public SpuInfoEntity getSpuBySkuId(Long skuId) {
+        SkuInfoEntity skuInfoEntity = skuInfoService.getById(skuId);
+        SpuInfoEntity spu = this.getById(skuInfoEntity.getSpuId());
+        BrandEntity brandEntity = brandService.getById(spu.getBrandId());
+        spu.setBrandName(brandEntity.getName());
+        return spu;
     }
 }

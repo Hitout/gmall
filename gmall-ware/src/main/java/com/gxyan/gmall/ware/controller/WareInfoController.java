@@ -1,5 +1,6 @@
 package com.gxyan.gmall.ware.controller;
 
+import com.gxyan.gmall.common.to.FareVo;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
 import com.gxyan.gmall.ware.entity.WareInfoEntity;
@@ -75,4 +76,8 @@ public class WareInfoController {
         return R.ok();
     }
 
+    @RequestMapping("/fare/{addrId}")
+    public FareVo getFare(@PathVariable("addrId") Long addrId) {
+        return wareInfoService.getFare(addrId);
+    }
 }

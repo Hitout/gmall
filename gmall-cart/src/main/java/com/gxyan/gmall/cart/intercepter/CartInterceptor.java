@@ -22,6 +22,11 @@ public class CartInterceptor implements HandlerInterceptor {
     public static ThreadLocal<UserInfoTo> threadLocal = new ThreadLocal<>();
 
     @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        threadLocal.remove();
+    }
+
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         UserInfoTo userInfoTo = new UserInfoTo();
 

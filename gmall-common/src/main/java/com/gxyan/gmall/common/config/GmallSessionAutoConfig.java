@@ -11,6 +11,7 @@ import org.springframework.session.web.http.DefaultCookieSerializer;
 
 /**
  * session自动装配
+ * 根据 @Conditional 注解的条件，进行自动配置并将 Bean 注入 Spring Context
  * @author gxyan
  * @date 2020/12/3 23:54
  */

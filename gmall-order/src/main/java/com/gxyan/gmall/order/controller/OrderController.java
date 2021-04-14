@@ -75,4 +75,9 @@ public class OrderController {
         return R.ok();
     }
 
+    @GetMapping("/getByOrderSn/{orderSn}")
+    public R getByOrderSn(@PathVariable("orderSn") String orderSn){
+        OrderEntity orderEntity = orderService.getOrderByOrderSn(orderSn);
+        return R.ok().setData(orderEntity);
+    }
 }

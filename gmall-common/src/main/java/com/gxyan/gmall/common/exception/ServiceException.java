@@ -20,8 +20,8 @@ public class ServiceException extends RuntimeException {
         this.msg = msg;
     }
 
-    public ServiceException(String msg, int code) {
-        this.msg = msg;
+    public ServiceException(int code, String msg) {
         this.code = code;
+        this.msg = msg;
     }
 }

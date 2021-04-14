@@ -7,8 +7,30 @@ spring:
     url: jdbc:mysql://localhost:3306/gmall_oms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: gxyan
     password:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: /
+    # confirmCallback(开启发送端确认)
+    publisher-confirm-type: correlated
+    # returnCallback(开启发送端消息抵达队列的确认)
+    publisher-returns: true
+    # 只要抵达队列，以异步发送优先回调我们这个returnfirm
+    template:
+      mandatory: true
+    # 手动ack消息
+    listener:
+      simple:
+        acknowledge-mode: manual
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   global-config:
     db-config:
       id-type: auto
+
+# 自定义线程池参数
+gmall:
+  thread:
+    corePoolSize: 10
+    maxPoolSize: 20
+    keepAliveTime: 300

@@ -770,7 +770,7 @@
     $('.itemCheck').click(function () {
         var skuId = $(this).attr("skuId");
         var check = $(this).prop("checked");
-        location.href = "http://cart.gxmall.com/checkItem?skuId=" + skuId + "&check=" + (check?1:0);
+        location.href = "http://cart.gxmall.com/addCartItem?skuId=" + skuId + "&check=" + (check?1:0);
         return false;
     });
 

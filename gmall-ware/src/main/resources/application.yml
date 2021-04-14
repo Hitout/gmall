@@ -7,6 +7,10 @@ spring:
     url: jdbc:mysql://localhost:3306/gmall_wms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: gxyan
     password:
+  rabbitmq:
+    listener:
+      simple:
+        acknowledge-mode: manual
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   global-config:

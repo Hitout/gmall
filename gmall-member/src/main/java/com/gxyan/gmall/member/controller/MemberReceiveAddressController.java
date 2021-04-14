@@ -1,19 +1,15 @@
 package com.gxyan.gmall.member.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.gxyan.gmall.member.entity.MemberReceiveAddressEntity;
-import com.gxyan.gmall.member.service.MemberReceiveAddressService;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
+import com.gxyan.gmall.member.entity.MemberReceiveAddressEntity;
+import com.gxyan.gmall.member.service.MemberReceiveAddressService;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -80,4 +76,11 @@ public class MemberReceiveAddressController {
         return R.ok();
     }
 
+    /**
+     * 获取收获地址信息
+     */
+    @PostMapping("/getAddressByUserId")
+    public List<MemberReceiveAddressEntity> getAddressByUserId(@RequestBody Long userId) {
+        return memberReceiveAddressService.getAddressByUserId(userId);
+    }
 }

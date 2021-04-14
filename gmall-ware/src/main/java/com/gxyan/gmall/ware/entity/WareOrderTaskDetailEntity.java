@@ -2,10 +2,10 @@ package com.gxyan.gmall.ware.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Builder;
+import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
-import lombok.Data;
 
 /**
  * 库存工作单
@@ -14,6 +14,7 @@ import lombok.Data;
  * @date 2020-07-30 20:25:35
  */
 @Data
+@Builder
 @TableName("wms_ware_order_task_detail")
 public class WareOrderTaskDetailEntity implements Serializable {
 	private static final long serialVersionUID = 1L;

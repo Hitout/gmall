@@ -1,5 +1,6 @@
 package com.gxyan.gmall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -40,6 +41,11 @@ public class SpuInfoEntity implements Serializable {
 	 * 品牌id
 	 */
 	private Long brandId;
+	/**
+	 * 品牌名称
+	 */
+	@TableField(exist = false)
+	private String brandName;
 	/**
 	 * 
 	 */

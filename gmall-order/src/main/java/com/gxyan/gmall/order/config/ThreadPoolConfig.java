@@ -1,4 +1,4 @@
-package com.gxyan.gmall.cart.config;
+package com.gxyan.gmall.order.config;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -10,11 +10,11 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author gxyan
- * @date 2020/12/5 19:50
+ * @date 2020/12/6 21:58
  */
 @Configuration
 @EnableConfigurationProperties(ThreadPoolConfigProperties.class)
-public class MyThreadPoolConfig {
+public class ThreadPoolConfig {
     @Bean
     public ThreadPoolExecutor threadPoolExecutor(ThreadPoolConfigProperties properties) {
         return new ThreadPoolExecutor(

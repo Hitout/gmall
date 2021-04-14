@@ -1,6 +1,8 @@
 package com.gxyan.gmall.ware.controller;
 
+import com.gxyan.gmall.common.exception.ServiceException;
 import com.gxyan.gmall.common.to.SkuHasStockVo;
+import com.gxyan.gmall.common.to.WareSkuLockVo;
 import com.gxyan.gmall.common.utils.PageUtils;
 import com.gxyan.gmall.common.utils.R;
 import com.gxyan.gmall.ware.entity.WareSkuEntity;
@@ -86,5 +88,18 @@ public class WareSkuController {
         List<SkuHasStockVo> vos = wareSkuService.getSkuHasStock(skuIds);
 
         return R.ok().setData(vos);
+    }
+
+    /**
+     * 下订单时锁库存
+     */
+    @PostMapping("/lock/order")
+    public R orderLockStock(@RequestBody WareSkuLockVo lockVo) {
+        try {
+            wareSkuService.orderLockStock(lockVo);
+            return R.ok();
+        } catch (ServiceException e) {
+            return R.error(e.getCode(), e.getMsg());
+        }
     }
 }
